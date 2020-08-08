@@ -31,7 +31,7 @@ class App extends React.Component {
   handleClearToggle = (id) => {
     this.setState({
       errands: this.state.errands.map(tasks => {
-        if (tasks.id === id) {
+        if (id === tasks.id) {
           return {
             ...tasks,
             completed: !tasks.completed
@@ -41,6 +41,15 @@ class App extends React.Component {
       })
     })
   }
+
+  handleErase = (event) => {
+    event.preventDefault();
+    this.setState({
+      errands: this.state.errands.filter(tasks => (
+        tasks.completed === false
+      ))
+    })
+  }
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
@@ -48,8 +57,8 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm handleAddItem={this.handleAddItem}/>
-        <TodoList errand={this.state.errands} handleToggle={this.toggleCompleted}/>
+        <TodoForm handleAddItem={this.handleAddItem} handleErase={this.handleErase}/>
+        <TodoList errand={this.state.errands} handleToggle={this.handleClearToggle}/>
       </div>
     );
   }

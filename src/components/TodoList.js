@@ -8,7 +8,7 @@ const TodoList = (props) => {
     console.log("props from TodoList", props)
 
     return (
-        <div>
+        <div className="list">
         {props.errand.map(item => (
             <Todo key={item.id} errand={item}  handleToggle={props.handleToggle}/>
         ))}

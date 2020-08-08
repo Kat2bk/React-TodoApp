@@ -28,7 +28,7 @@ class TodoForm extends React.Component {
             <input type="text" name="errand" value={this.state.task} onChange={this.handleChange}/>
             <button type="submit">Add Errand</button>
             <div className="btn-div">
-            <button className="btn-submit" type="submit">Erase Completed</button>
+            <button className="btn-submit" type="submit" onClick={this.props.handleErase}>Erase Completed</button>
             </div>
             </form>
             </div>

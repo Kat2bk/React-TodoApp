@@ -1,10 +1,11 @@
 import React from "react";
 
-const Todo = (props) => {
-    console.log("props from Todo", props)
+const Todo = ({errand, handleToggle}) => {
+    console.log("props from Todo", errand)
+    console.log("handleToggle", handleToggle)
     return (
         <div>
-        {props.item.task}
+        {errand.task}
         </div>
     )
 }

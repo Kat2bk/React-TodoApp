@@ -10,7 +10,7 @@ const TodoList = (props) => {
     return (
         <div>
         {props.errand.map(item => (
-            <Todo key={item.id} item={item} />
+            <Todo key={item.id} errand={item}  handleToggle={props.handleToggle}/>
         ))}
         </div>
     )

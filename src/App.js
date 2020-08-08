@@ -19,16 +19,16 @@ class App extends React.Component {
     }
   }
 
-  handleAddItem = () => {
+  handleAddItem = (task) => {
     const newItem = {
       id: Date.now(),
-      task: "",
+      task: task,
       completed: false
     }
     this.setState({ errands: [...this.state.errands, newItem]})
   }
 
-  handleToggle = (id) => {
+  handleClearToggle = (id) => {
     this.setState({
       errands: this.state.errands.map(tasks => {
         if (tasks.id === id) {

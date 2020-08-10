@@ -1,10 +1,10 @@
 import React from "react";
 
-const Todo = (props) => {
-    console.log("props from Todo", props)
+const Todo = ({errand, handleToggle}) => {
     return (
-        <div>
-        {props.item.task}
+        <div className={`errand ${errand.completed ? " completed" : ""}`} onClick={() => handleToggle(errand.id)}>
+        {errand.task}
+        <p className="error"></p>
         </div>
     )
 }

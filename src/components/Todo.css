@@ -1,0 +1,5 @@
+
+.errand.completed {
+    text-decoration: line-through;
+    background-color: #777;
+}

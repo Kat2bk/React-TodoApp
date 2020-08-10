@@ -15,17 +15,42 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      errands: errands
+      errands: JSON.parse(localStorage.getItem('task')) || errands
     }
   }
 
-  handleAddItem = () => {
+  handleAddItem = (task) => {
     const newItem = {
       id: Date.now(),
-      task: "",
+      task: task,
       completed: false
     }
-    this.setState({ errands: [...this.state.errands, newItem]})
+    this.setState({ errands: [...this.state.errands, newItem]}, () => {
+      localStorage.setItem('task', JSON.stringify(this.state.errands));
+    })
+  }
+
+  handleClearToggle = (id) => {
+    this.setState({
+      errands: this.state.errands.map(tasks => {
+        if (id === tasks.id) {
+          return {
+            ...tasks,
+            completed: !tasks.completed
+          }
+        }
+        return tasks
+      })
+    })
+  }
+
+  handleErase = (event) => {
+    event.preventDefault();
+    this.setState({
+      errands: this.state.errands.filter(tasks => (
+        tasks.completed === false
+      ))
+    })
   }
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -34,8 +59,8 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm handleAddItem={this.handleAddItem}/>
-        <TodoList errand={this.state.errands}/>
+        <TodoForm handleAddItem={this.handleAddItem} handleErase={this.handleErase}/>
+        <TodoList errand={this.state.errands} handleToggle={this.handleClearToggle}/>
       </div>
     );
   }

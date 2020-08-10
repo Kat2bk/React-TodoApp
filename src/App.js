@@ -25,7 +25,9 @@ class App extends React.Component {
       task: task,
       completed: false
     }
-    this.setState({ errands: [...this.state.errands, newItem]})
+    this.setState({ errands: [...this.state.errands, newItem]}, () => {
+      localStorage.setItem('task', JSON.stringify(this.state.errands));
+    })
   }
 
   handleClearToggle = (id) => {

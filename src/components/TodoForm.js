@@ -8,10 +8,6 @@ class TodoForm extends React.Component {
         }
     }
 
-    componentDidMount() {
-        this.setState({task: localStorage.getItem('task') ? JSON.parse(localStorage.getItem('task')) : []})
-    }
-
     handleChange = (event) => {
         this.setState({ task: event.target.value})
     }

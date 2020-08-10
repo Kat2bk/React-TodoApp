@@ -15,7 +15,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      errands: errands
+      errands: JSON.parse(localStorage.getItem('task')) || errands
     }
   }
 

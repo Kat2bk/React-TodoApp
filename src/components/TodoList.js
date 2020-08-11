@@ -3,6 +3,7 @@
 
 import React from "react";
 import Todo from "./Todo";
+import "./Todo.css";
 
 const TodoList = (props) => {
     console.log("props from TodoList", props)

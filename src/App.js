@@ -25,9 +25,14 @@ class App extends React.Component {
       task: task,
       completed: false
     }
-    this.setState({ errands: [...this.state.errands, newItem]}, () => {
-      localStorage.setItem('task', JSON.stringify(this.state.errands));
+
+    if (task !== "") {
+      this.setState({ errands: [...this.state.errands, newItem]}, () => {
+        if (this.state.errands) {
+        localStorage.setItem('task', JSON.stringify(this.state.errands))
+      }
     })
+    }
   }
 
   handleClearToggle = (id) => {
@@ -50,6 +55,8 @@ class App extends React.Component {
       errands: this.state.errands.filter(tasks => (
         tasks.completed === false
       ))
+    }, () => {
+      localStorage.setItem('task', JSON.stringify(this.state.errands))
     })
   }
   // you will need a place to store your state in this component.
@@ -57,8 +64,10 @@ class App extends React.Component {
   // this component is going to take care of state, and any change handlers you need to work with your state
   render() {
     return (
-      <div>
+      <div className="container">
+      <div className="headline">
         <h2>Welcome to your Todo App!</h2>
+      </div>
         <TodoForm handleAddItem={this.handleAddItem} handleErase={this.handleErase}/>
         <TodoList errand={this.state.errands} handleToggle={this.handleClearToggle}/>
       </div>
